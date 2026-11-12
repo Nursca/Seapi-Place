@@ -1,0 +1,19 @@
+{
+  "name": "lyra",
+  "private": true,
+  "workspaces": [
+    "apps/web",
+    "apps/server"
+  ],
+  "scripts": {
+    "dev": "concurrently -n server,web -c dim,dim \"npm run dev -w @lyra/server\" \"npm run dev -w @lyra/web\"",
+    "dev:server": "npm run dev -w @lyra/server",
+    "dev:web": "npm run dev -w @lyra/web",
+    "start": "concurrently -n server,web \"npm run start -w @lyra/server\" \"npm run start -w @lyra/web\"",
+    "test": "npm run test -w @lyra/server",
+    "typecheck": "tsc -p apps/server/tsconfig.json --noEmit && tsc -p apps/web/tsconfig.json --noEmit"
+  },
+  "devDependencies": {
+    "concurrently": "^9.2.1"
+  }
+}
